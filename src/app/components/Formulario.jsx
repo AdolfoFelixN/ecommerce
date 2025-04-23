@@ -2,16 +2,17 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
+import Swal from "sweetalert2";
 
 function Formulario() {
   const router = useRouter();
-  const formRef = useRef(null)
+  const formRef = useRef(null);
 
   const [producto, setProducto] = useState({
     NombreProducto: "",
     Descripcion: "",
-    Precio: 0.00,
-    Categoria: "",
+    Precio: 0.0,
+    Categoria: "Hogar",
   });
 
   const handleChange = (e) => {
@@ -19,9 +20,25 @@ function Formulario() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const res = await axios.post("/api/productos", producto);
-    formRef.current.reset()
+    try {
+      e.preventDefault();
+      const res = await axios.post("/api/productos", producto);
+      if (res.status === 200) {
+        Swal.fire({
+          icon: "success",
+          title: "Producto registrado",
+          text: "Producto registrado correctamente",
+        });
+      }
+      router.push("/");
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Algo salió mal!",
+      });
+    }
+    formRef.current.reset();
   };
 
   return (
@@ -30,8 +47,9 @@ function Formulario() {
       ref={formRef}
       className="bg-white flex flex-col gap-3 shadow-md w-96 px-8 pt-8 rounded"
     >
-      <div className="flex flex-col gap-1">
-        <label htmlFor="nombre" className="font-semibold">
+      <h2 className="text-2xl text-center text-[#0F4C81] font-semibold mb-3">Registrar Producto</h2>
+      <div className="flex flex-col gap-1 text-sm">
+        <label htmlFor="nombre">
           Nombre del Producto:
         </label>
         <input
@@ -43,8 +61,8 @@ function Formulario() {
           onChange={handleChange}
         />
       </div>
-      <div className="flex flex-col gap-1">
-        <label htmlFor="categoria" className="font-semibold">
+      <div className="flex flex-col gap-1 text-sm">
+        <label htmlFor="categoria">
           Categoría:
         </label>
         <select
@@ -53,14 +71,14 @@ function Formulario() {
           className="p-2 border border-gray-300 rounded-sm"
           onChange={handleChange}
         >
-          <option value="hogar">Hogar</option>
-          <option value="hogar">Ropa</option>
-          <option value="hogar">Alimentos</option>
-          <option value="hogar">Tecnología</option>
+          <option value="Hogar">Hogar</option>
+          <option value="Ropa">Ropa</option>
+          <option value="Alimentos">Alimentos</option>
+          <option value="Tecnología">Tecnología</option>
         </select>
       </div>
-      <div className="flex flex-col gap-1">
-        <label htmlFor="descripcion" className="font-semibold">
+      <div className="flex flex-col gap-1 text-sm">
+        <label htmlFor="descripcion">
           Descripción del Producto:
         </label>
         <textarea
@@ -72,12 +90,13 @@ function Formulario() {
           onChange={handleChange}
         />
       </div>
-      <div className="flex flex-col gap-1">
-        <label htmlFor="precio" className="font-semibold">
+      <div className="flex flex-col gap-1 text-sm">
+        <label htmlFor="precio">
           Precio:
         </label>
         <input
           type="number"
+          step={0.01}
           name="Precio"
           id="precio"
           placeholder="49.99"
