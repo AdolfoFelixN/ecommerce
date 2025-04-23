@@ -1,0 +1,9 @@
+CREATE DATABASE ecommerce;
+
+CREATE TABLE Productos(
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    NombreProducto VARCHAR(150) NOT NULL,
+    Descripcion VARCHAR(100) NOT NULL,
+    Precio FLOAT(10, 2) NOT NULL,
+    Categoria VARCHAR(70)
+)
