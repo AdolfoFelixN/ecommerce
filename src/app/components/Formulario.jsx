@@ -13,6 +13,8 @@ function Formulario() {
     Descripcion: "",
     Precio: 0.0,
     Categoria: "Hogar",
+    LinkIMG: "",
+    MesesSI: "",
   });
 
   const handleChange = (e) => {
@@ -62,6 +64,19 @@ function Formulario() {
         />
       </div>
       <div className="flex flex-col gap-1 text-sm">
+        <label htmlFor="descripcion">
+          Descripción del Producto:
+        </label>
+        <textarea
+          rows={4}
+          name="Descripcion"
+          id="descripcion"
+          placeholder="ej. Refrigerador de 11 pies con 4 niveles de enfriado"
+          className="p-2 border border-gray-300 rounded-sm"
+          onChange={handleChange}
+        />
+      </div>
+      <div className="flex flex-col gap-1 text-sm">
         <label htmlFor="categoria">
           Categoría:
         </label>
@@ -78,19 +93,6 @@ function Formulario() {
         </select>
       </div>
       <div className="flex flex-col gap-1 text-sm">
-        <label htmlFor="descripcion">
-          Descripción del Producto:
-        </label>
-        <textarea
-          rows={4}
-          name="Descripcion"
-          id="descripcion"
-          placeholder="ej. Refrigerador de 11 pies con 4 niveles de enfriado"
-          className="p-2 border border-gray-300 rounded-sm"
-          onChange={handleChange}
-        />
-      </div>
-      <div className="flex flex-col gap-1 text-sm">
         <label htmlFor="precio">
           Precio:
         </label>
@@ -100,6 +102,38 @@ function Formulario() {
           name="Precio"
           id="precio"
           placeholder="49.99"
+          className="p-2 border border-gray-300 rounded-sm"
+          onChange={handleChange}
+        />
+      </div>
+      <div className="flex flex-col gap-1 text-sm">
+        <label htmlFor="MesesSI">
+          Meses sin intereses:
+        </label>
+        <select
+          name="MesesSI"
+          id="MesesSI"
+          className="p-2 border border-gray-300 rounded-sm"
+          onChange={handleChange}
+        >
+          <option value={0}>0 Meses</option>
+          <option value={6}>6 Meses</option>
+          <option value={12}>12 Meses</option>
+          <option value={24}>24 Meses</option>
+          <option value={36}>36 Meses</option>
+          <option value={48}>48 Meses</option>
+        </select>
+      </div>
+      
+      <div className="flex flex-col gap-1 text-sm">
+        <label htmlFor="LinkIMG">
+          Link Imagen:
+        </label>
+        <input
+          type="text"
+          name="LinkIMG"
+          id="LinkIMG"
+          placeholder="https://ejemplo.com"
           className="p-2 border border-gray-300 rounded-sm"
           onChange={handleChange}
         />

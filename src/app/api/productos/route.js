@@ -19,19 +19,23 @@ export async function GET() {
 
 export async function POST(reques) {
   try {
-    const { NombreProducto, Descripcion, Precio, Categoria } =
+    const { NombreProducto, Descripcion, Precio, Categoria, LinkIMG, MesesSI } =
       await reques.json();
     const result = await conn.query("INSERT INTO Productos SET ?", {
       NombreProducto,
       Descripcion,
       Precio,
       Categoria,
+      LinkIMG,
+      MesesSI,
     });
     return NextResponse.json({
       NombreProducto,
       Descripcion,
       Precio,
       Categoria,
+      LinkIMG,
+      MesesSI,
       ID: result.insertId,
     });
   } catch (error) {
