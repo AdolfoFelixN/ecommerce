@@ -11,6 +11,7 @@ pnpm dev
 # or
 bun dev
 ```
+Sistema realizado con NextJS, TailwindCSS, y MySQL como base de datos
 # Página inicial
 ![image](https://github.com/user-attachments/assets/4a914db8-8c21-4d73-bcd3-da09da7d36f1)
 
