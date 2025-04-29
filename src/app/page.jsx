@@ -1,6 +1,5 @@
 "use client";
 import axios from "axios";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import ProductCard from "./components/ProductCard";
 

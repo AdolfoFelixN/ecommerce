@@ -1,6 +1,12 @@
+import { useCartStore } from "@/providers/store";
+
 function ProductCard({ producto }) {
+
+    const addToCart = useCartStore((state) => state.addToCart)
+
   return (
     <div
+      key={producto.ID}
       className="flex flex-col items-center gap-2 bg-white w-48 rounded"
     >
       <img
@@ -13,7 +19,7 @@ function ProductCard({ producto }) {
         <span className="font-semibold text-[#FFC857]">${producto.Precio}</span>
         <p className="text-sm">Hasta {producto.MesesSI} meses sin intereses</p>
       </div>
-      <button className="w-full bg-blue-500 text-white px-3 py-2 rounded cursor-pointer hover:bg-blue-600">
+      <button onClick={() => addToCart(producto)} className="w-full bg-blue-500 text-white px-3 py-2 rounded cursor-pointer hover:bg-blue-600">
         Agregar al carrito
       </button>
     </div>
